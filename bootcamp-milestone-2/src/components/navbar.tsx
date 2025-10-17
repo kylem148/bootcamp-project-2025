@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-export default function Navbar() {
+function Navbar() {
   return (
     // replace everything in between the <header> & <header /> tags
     // with your navbar code from your earlier milestones
@@ -40,3 +40,5 @@ export default function Navbar() {
     </header>
   );
 }
+
+export default Navbar;

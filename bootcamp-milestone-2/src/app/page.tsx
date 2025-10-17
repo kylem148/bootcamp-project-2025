@@ -1,6 +1,6 @@
-import AboutMe from "../components/AboutMe";
-import Blogs from "../components/Blogs";
-import Resume from "../components/Resume";
+import AboutMe from "../sections/AboutMe";
+import Blogs from "../sections/Blogs";
+import Resume from "../sections/Resume";
 
 export default function Home() {
   return (
