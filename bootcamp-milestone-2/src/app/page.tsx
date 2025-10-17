@@ -1,8 +1,13 @@
+import AboutMe from "../components/AboutMe";
+import Blogs from "../components/Blogs";
+import Resume from "../components/Resume";
 
 export default function Home() {
   return (
     <div>
-      This is my page
+      <AboutMe />
+      <Blogs />
+      <Resume />
     </div>
   );
 }
