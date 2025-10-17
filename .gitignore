@@ -1,0 +1,8 @@
+bootcamp-milestone-1/
+
+.DS_Store
+node_modules/
+.env
+.vscode/
+.idea/
+*.log       
