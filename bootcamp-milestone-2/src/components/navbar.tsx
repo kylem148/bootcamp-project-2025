@@ -7,8 +7,8 @@ function Navbar() {
     // with your navbar code from your earlier milestones
     // NOTE: we use "class" in HTML but React is quirky so we have to
     // change all the "class" to "className"
-    <header className="bg-neutral-600 md:px-13 px-10 py-3 flex justify-between items-center">
-      <div className="md:text-[30px] text-[20px]">
+    <header className="bg-neutral-600 md:px-13 px-10 py-3 flex justify-between items-center sticky top-0 z-40">
+      <div className="md:text-[30px] text-[20px] font-bold">
         <h1> Kyle Morgan </h1>
       </div>
       <nav className="flex gap-5 text-green-200 md:text-[22px] text-[17px]">

@@ -7,6 +7,7 @@ import Title from "../components/Title";
 import AboutMe from "../sections/AboutMe";
 import Blogs from "../sections/Blogs";
 import Resume from "../sections/Resume";
+import Footer from "../components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,8 +26,6 @@ export default function Home() {
           pin: true,
         },
       });
-
-      // Move the hero up and off screen
       tl.to(heroRef.current, {
         yPercent: -100,
         ease: "power2.inOut",
@@ -45,15 +44,13 @@ export default function Home() {
         >
           <Title />
         </div>
-        <div className="absolute top-0 left-0 w-full bg-[#121212] text-white z-0 flex items-center justify-center text-4xl">
-          <AboutMe />
-        </div>
+        <AboutMe />
       </div>
       <main className=" text-white">
         <div>
-          <AboutMe />
           <Blogs />
           <Resume />
+          <Footer />
         </div>
       </main>
     </div>
