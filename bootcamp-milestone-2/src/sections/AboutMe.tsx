@@ -2,8 +2,8 @@ import React from 'react'
 
 const AboutMe = () => {
   return (
-    <div>
-      
+    <div className="">
+      This is my About Me section.
     </div>
   )
 }
