@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -45,7 +46,7 @@ export default function Home() {
         </div>
         <AboutMe />
       </div>
-      <main className=" text-white ">
+      <main className=" text-white">
         <div>
           <Blogs />
           <Resume />
