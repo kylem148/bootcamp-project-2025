@@ -8,6 +8,7 @@ import AboutMe from "../sections/AboutMe";
 import Blogs from "../sections/Blogs";
 import Resume from "../sections/Resume";
 import Footer from "../components/Footer";
+import Navbar from "@/components/Navbar";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,6 +49,7 @@ export default function Home() {
       </div>
       <main className=" text-white">
         <div>
+          <Navbar />
           <Blogs />
           <Resume />
           <Footer />
