@@ -7,7 +7,7 @@ type Blog = {
   slug: string;
 };
 
-const Blogs: Blog[] = [
+export const Blogs: Blog[] = [
   {
     title: "Entry # 1",
     date: "2025",
