@@ -29,10 +29,16 @@
   display: flex;
   align-items: center;
   width: 200%;
-  height: 100%;
+  height: 150%;
   position: absolute;
   overflow: hidden;
   animation: marquee 60s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .marquee-box {
+    height: 100%; /* or any value you prefer */
+  }
 }
 .marquee-item {
   float: left;
@@ -65,4 +71,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (min-width: 769px) {
+  .cards .card:hover ~ .card {
+    transform: translateX(100px);
+  }
 }
