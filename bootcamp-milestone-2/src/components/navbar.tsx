@@ -1,42 +1,84 @@
 import React from "react";
 import Link from "next/link";
+import "boxicons/css/boxicons.min.css";
 
 function Navbar() {
+  //toggle visiblity of menu
+  const toggleMenu = () => {
+    const MobileMenu = document.getElementById("mobileMenu");
+    if (MobileMenu?.classList.contains("hidden")) {
+      MobileMenu.classList.remove("hidden");
+    } else {
+      MobileMenu?.classList.add("hidden");
+    }
+  };
+
   return (
-    // replace everything in between the <header> & <header /> tags
-    // with your navbar code from your earlier milestones
-    // NOTE: we use "class" in HTML but React is quirky so we have to
-    // change all the "class" to "className"
-    <header className="bg-neutral-600 md:px-13 px-10 py-3 flex justify-between items-center sticky top-0 z-40">
-      <div className="md:text-[30px] text-[20px] font-bold">
-        <h1> Kyle Morgan </h1>
-      </div>
-      <nav className="flex gap-5 text-green-200 md:text-[22px] text-[17px]">
-        <Link
-          href="/"
-          className="transition-transform duration-300 ease-in-out hover:-translate-y-1"
+    <header className="z-90 flex justify-between items-center py-4 px-4 lg:px-20 fixed right-0 left-0 top-0">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl m-0">Kyle Morgan</h1>
+      <nav className="hidden md:flex items-center gap-12">
+        <a
+          className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
+          href="#"
         >
           Home
-        </Link>
-        <Link
-          href="/blogs"
-          className="transition-transform duration-300 ease-in-out hover:-translate-y-1"
+        </a>
+        <a
+          className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
+          href="#"
         >
-          Blogs
-        </Link>
-        <Link
-          href="/resume"
-          className="transition-transform duration-300 ease-in-out hover:-translate-y-1"
+          Blog
+        </a>
+        <a
+          className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
+          href="#"
         >
           Resume
-        </Link>
-        <Link
-          href="/about"
-          className="transition-transform duration-300 ease-in-out hover:-translate-y-1"
+        </a>
+        <a
+          className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
+          href="#"
         >
-          Contact Me
-        </Link>
+          Contact
+        </a>
       </nav>
+
+      <button onClick={toggleMenu} className="md:hidden text-3xl p-2 z-50">
+        <i className="bx bx-menu"></i>
+      </button>
+
+      {/* Mobile Menu */}
+      <div
+        id="mobileMenu"
+        className="hidden fixed top-16 bottom-0 right-0 left-0 p-5 md:hidden z-40 bg0black bg-opacity-70 backdrop-blur- md"
+      >
+        <nav className="flex flex-col gap-6 items-center">
+          <a
+            className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
+            href="#"
+          >
+            Home
+          </a>
+          <a
+            className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
+            href="#"
+          >
+            Blog
+          </a>
+          <a
+            className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
+            href="#"
+          >
+            Resume
+          </a>
+          <a
+            className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
+            href="#"
+          >
+            Contact
+          </a>
+        </nav>
+      </div>
     </header>
   );
 }
