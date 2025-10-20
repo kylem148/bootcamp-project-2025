@@ -1,11 +1,81 @@
-import React from 'react'
+"use client";
 
-const Blogs = () => {
+import Link from "next/link";
+import { Blogs } from "../constants/blogData";
+
+function BlogList() {
   return (
-    <div className="w-screen h-screen flex items-center justify-center">
-      This is my Blogs section.
-    </div>
-  )
-}
+    <main className="flex flex-col items-center justify-center min-h-screen">
+      <h1
+        className="
+            text-white font-extrabold
+            text-5xl md:text-6xl 
+            mb-8 md:mb-0
+          "
+      >
+        Blog
+      </h1>
+      <div
+        id="card-list"
+        className="cards flex w-screen flex-wrap justify-center gap-8 p-1 grow-3 m-10 md:m-20 "
+      >
+        {Blogs.map((blog) => (
+          <article
+            key={blog.slug}
+            className={[
+              // base card
+              "hidden card relative  md:flex flex-col p-6 rounded-2xl bg-neutral-500",
+              "shadow-neutral-950 shadow-lg",
+              "transition-transform duration-200 hover:-translate-y-4",
+              // sizing
+              "flex-1 basis-[400px] h-[300px] md:h-[400px] min-w-[150px] max-w-[250px] md:min-w[100px] md:max-w-[300px]",
+              // stacked overlap
+              "[&:not(:first-child)]:-ml-[130px]",
+            ].join(" ")}
+          >
+            <header className="flex flex-col gap-1">
+              <p className="text-sm/5 text-black/70">{blog.date}</p>
+              <h2 className="text-lg font-semibold">{blog.title}</h2>
+              <Link
+                href={`/blogs/${blog.slug}`}
+                className="text-[0.95rem] underline text-amber-800 hover:text-amber-800"
+              >
+                Click here to view…
+              </Link>
+              <img
+                src={blog.image}
+                alt={blog.imageAlt}
+                className="mt-2 w-full h-[180px] object-cover rounded-lg"
+              />
+            </header>
+          </article>
+        ))}
 
-export default Blogs
+        {/* Mobile View */}
+        {Blogs.map((blog) => (
+          <article
+            key={blog.slug}
+            className="md:hidden card flex flex-col p-6 rounded-2xl bg-neutral-500 shadow-orange-300 shadow-md transition-transform duration-200 hover:-translate-y-4 flex-1 basis-[200px] h-[300px] min-w-[150px] max-w-[250px]"
+          >
+            <header className="flex flex-col gap-1">
+              <p className="text-sm/5 text-black/70">{blog.date}</p>
+              <h2 className="text-lg font-semibold">{blog.title}</h2>
+              <Link
+                href={`/blogs/${blog.slug}`}
+                className="text-[0.95rem] underline text-amber-800 hover:text-amber-800"
+              >
+                Click here to view…
+              </Link>
+              <img
+                src={blog.image}
+                alt={blog.imageAlt}
+                className="mt-2 w-full h-[180px] object-cover rounded-lg"
+              />
+            </header>
+          </article>
+        ))}
+      </div>
+    </main>
+  );
+}
+export default BlogList;
