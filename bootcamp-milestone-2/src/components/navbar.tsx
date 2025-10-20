@@ -1,8 +1,12 @@
 import React from "react";
-import Link from "next/link";
+import { useRef, useState } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import "boxicons/css/boxicons.min.css";
 
 function Navbar() {
+  const [titleDone, setTitleDone] = useState(false);
+
   //toggle visiblity of menu
   const toggleMenu = () => {
     const MobileMenu = document.getElementById("mobileMenu");
@@ -13,8 +17,46 @@ function Navbar() {
     }
   };
 
+  const showNavbar = () => {
+    const tl = gsap.timeline();
+    tl.fromTo(
+      "header",
+      { y: -100, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: "power2.out" }
+    );
+    tl.fromTo(
+      "header h1",
+      { x: -50, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out",
+        onComplete: () => setTitleDone(true),
+      },
+      "-=0.5"
+    );
+    tl.fromTo(
+      "nav a",
+      { y: -20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.3,
+        ease: "power2.out",
+        stagger: 0.1,
+      },
+      "-=0.3"
+    );
+  };
+
+  useGSAP(() => {
+    showNavbar();
+  }, []);
+
   return (
-    <header className="z-90 flex justify-between items-center py-4 px-4 lg:px-20 fixed right-0 left-0 top-0">
+    // Navbar component for desktop
+    <header className="z-90 flex justify-between items-center py-4 px-4 lg:px-20 fixed right-0 left-0 top-0 bg-nuetral-900 bg-opacity-70 backdrop-blur-md shadow-md">
       <h1 className="text-3xl md:text-4xl lg:text-5xl m-0">Kyle Morgan</h1>
       <nav className="hidden md:flex items-center gap-12">
         <a
