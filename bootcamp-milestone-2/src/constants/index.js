@@ -1,3 +1,24 @@
+const experiences = [
+  {
+    title: "Proffessional Music man",
+    job: "Music",
+    date: "2021-2023",
+    contents: ["Content"],
+  },
+  {
+    title: "Smthn",
+    job: "Smthn",
+    date: "2023-2024",
+    contents: ["Content"],
+  },
+  {
+    title: "Clubs and stuff",
+    job: "Self-tought",
+    date: "2025-Present",
+    contents: ["Content"],
+  },
+];
+
 const iconsList = [
   {
     name: "html",
@@ -41,4 +62,4 @@ const iconsList = [
   },
 ];
 
-export { iconsList };
+export { iconsList, experiences };

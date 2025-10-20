@@ -6,8 +6,7 @@ function Skills() {
     <div className="hidden h-60 md:flex flex-col items-center justify-center ">
       <div className="flex flex-col items-center justify-center overflow-hidden">
         <h1
-          className="text-white font-bold
-            text-5xl md:text-6xl "
+          className="text-heading"
         >
           Skills
         </h1>

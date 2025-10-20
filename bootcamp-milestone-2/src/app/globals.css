@@ -78,3 +78,7 @@ body {
     transform: translateX(100px);
   }
 }
+
+.text-heading {
+  @apply font-bold text-4xl md:text-4xl;
+}

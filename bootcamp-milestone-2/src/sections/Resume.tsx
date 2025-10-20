@@ -1,9 +1,11 @@
 import React from 'react'
+import {Timeline} from "../components/Timeline"
+import { experiences } from "../constants";
 
 const Resume = () => {
   return (
-    <div className="w-screen h-screen flex items-center justify-center">
-      This is my Resume section.
+    <div className="w-full">
+      <Timeline data={experiences}/>
     </div>
   )
 }

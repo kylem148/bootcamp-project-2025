@@ -8,9 +8,7 @@ function BlogList() {
     <main className="flex flex-col items-center justify-center min-h-screen">
       <h1
         className="
-            text-white font-extrabold
-            text-5xl md:text-6xl 
-            mb-8 md:mb-0
+            text-heading
           "
       >
         Blog
