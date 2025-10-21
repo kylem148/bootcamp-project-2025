@@ -1,5 +1,6 @@
 "use client";
 
+
 import Link from "next/link";
 import { Blogs } from "../constants/blogData";
 
@@ -8,7 +9,7 @@ function BlogList() {
     <main className="flex flex-col items-center justify-center min-h-screen">
       <h1
         className="
-            text-heading
+            text-heading mt-7
           "
       >
         Blog
@@ -22,7 +23,7 @@ function BlogList() {
             key={blog.slug}
             className={[
               // base card
-              "hidden card relative  md:flex flex-col p-6 rounded-2xl bg-neutral-500",
+              "hidden card relative  md:flex flex-col p-6 rounded-2xl bg-gradient-to-tr from-neutral-800 to-neutral-200",
               "shadow-neutral-950 shadow-lg",
               "transition-transform duration-200 hover:-translate-y-4",
               // sizing
@@ -53,7 +54,7 @@ function BlogList() {
         {Blogs.map((blog) => (
           <article
             key={blog.slug}
-            className="md:hidden card flex flex-col p-6 rounded-2xl bg-neutral-500 shadow-orange-300 shadow-md transition-transform duration-200 hover:-translate-y-4 flex-1 basis-[200px] h-[300px] min-w-[150px] max-w-[250px]"
+            className="md:hidden card flex flex-col p-6 rounded-2xl bg-gradient-to-tr from-neutral-800 to-neutral-200 shadow-[#a7a7a7] shadow-md transition-transform duration-200 hover:-translate-y-4 flex-1 basis-[200px] h-[300px] min-w-[150px] max-w-[250px]"
           >
             <header className="flex flex-col gap-1">
               <p className="text-sm/5 text-black/70">{blog.date}</p>
