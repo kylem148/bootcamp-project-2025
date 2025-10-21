@@ -1,4 +1,4 @@
-import Techicon from "./TechIcon.jsx";
+import Techicon from "./TechIcon";
 import { iconsList } from "../constants";
 
 function Skills() {

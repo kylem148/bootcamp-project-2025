@@ -52,6 +52,7 @@ export default function Home() {
           <Navbar />
           <Blogs />
           <Resume />
+          <div className="h-screen"/>
           <Footer />
         </div>
       </main>
