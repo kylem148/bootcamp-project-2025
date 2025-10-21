@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import { useMediaQuery } from "react-responsive";
 import ParallaxBackground from "./ParallaxBackground";
 
-const Contact = () => {
+const ContactParallax = () => {
   const isMobile = useMediaQuery({ maxWidth: 853 });
   const contactRef = useRef<HTMLElement | null>(null);
 
@@ -26,4 +26,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactParallax;
