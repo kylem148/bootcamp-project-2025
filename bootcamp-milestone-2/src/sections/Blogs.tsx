@@ -1,6 +1,5 @@
 "use client";
 
-
 import Link from "next/link";
 import { Blogs } from "../constants/blogData";
 
@@ -23,9 +22,9 @@ function BlogList() {
             key={blog.slug}
             className={[
               // base card
-              "hidden card relative  md:flex flex-col p-6 rounded-2xl bg-gradient-to-tr from-neutral-800 to-neutral-200",
+              "hidden card relative  md:flex flex-col p-6 rounded-2xl bg-neutral-800",
               "shadow-neutral-950 shadow-lg",
-              "transition-transform duration-200 hover:-translate-y-4",
+              "transition-transform duration-200 hover:-translate-y-4 border-4 border-neutral-500",
               // sizing
               "flex-1 basis-[400px] h-[300px] md:h-[400px] min-w-[150px] max-w-[250px] md:min-w[100px] md:max-w-[300px]",
               // stacked overlap
@@ -33,11 +32,11 @@ function BlogList() {
             ].join(" ")}
           >
             <header className="flex flex-col gap-1">
-              <p className="text-sm/5 text-black/70">{blog.date}</p>
+              <p className="text-sm/5 text-neutral-300">{blog.date}</p>
               <h2 className="text-lg font-semibold">{blog.title}</h2>
               <Link
                 href={`/blogs/${blog.slug}`}
-                className="text-[0.95rem] underline text-amber-800 hover:text-amber-800"
+                className="text-[0.95rem] text-green-700 hover:text-green-800"
               >
                 Click here to view…
               </Link>
@@ -54,21 +53,21 @@ function BlogList() {
         {Blogs.map((blog) => (
           <article
             key={blog.slug}
-            className="md:hidden card flex flex-col p-6 rounded-2xl bg-gradient-to-tr from-neutral-800 to-neutral-200 shadow-[#a7a7a7] shadow-md transition-transform duration-200 hover:-translate-y-4 flex-1 basis-[200px] h-[300px] min-w-[150px] max-w-[250px]"
+            className="md:hidden card flex flex-col p-6 border-4 border-neutral-500 rounded-2xl bg-neutral-800 shadow-[#333230] shadow-md transition-transform duration-200 hover:-translate-y-4 flex-1 basis-[200px] h-[300px] min-w-[150px] max-w-[250px]"
           >
             <header className="flex flex-col gap-1">
-              <p className="text-sm/5 text-black/70">{blog.date}</p>
+              <p className="text-sm/5 text-neutral-300">{blog.date}</p>
               <h2 className="text-lg font-semibold">{blog.title}</h2>
               <Link
                 href={`/blogs/${blog.slug}`}
-                className="text-[0.95rem] underline text-amber-800 hover:text-amber-800"
+                className="text-[0.95rem] text-green-700 hover:text-green-800"
               >
                 Click here to view…
               </Link>
               <img
                 src={blog.image}
                 alt={blog.imageAlt}
-                className="mt-2 w-full h-[180px] object-cover rounded-lg"
+                className="mt-2 w-full h-[150px] md:h-[180px] object-cover rounded-lg"
               />
             </header>
           </article>

@@ -9,6 +9,7 @@ import Blogs from "../sections/Blogs";
 import Resume from "../sections/Resume";
 import Footer from "../components/Footer";
 import Navbar from "@/components/Navbar";
+import Contact from "@/components/Contact";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,7 +53,8 @@ export default function Home() {
           <Navbar />
           <Blogs />
           <Resume />
-          <div className="h-screen"/>
+          <Contact />
+          <div className="h-screen"></div>
           <Footer />
         </div>
       </main>
