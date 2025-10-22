@@ -14,11 +14,8 @@ type Props = {
 };
 
 const ParallaxBackground = ({ targetRef }: Props) => {
-  // progress maps while the Contact section moves through the viewport
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    // start when the section's top reaches 80% viewport height,
-    // end when the section's bottom reaches 20% viewport height
     offset: ["start 0%", "end 20%"],
   });
 
@@ -28,21 +25,18 @@ const ParallaxBackground = ({ targetRef }: Props) => {
 
   const mountain3Y = useTransform(eased, [0, 1], ["0%", "70%"]);
   const planetsX = useTransform(eased, [0, 1], ["0%", "-20%"]);
+  const title = useTransform(eased, [0,1], ["0%", "-20%"]);
   const mountain2Y = useTransform(eased, [0, 1], ["0%", "30%"]);
   const mountain1Y = useTransform(eased, [0, 1], ["0%", "0%"]);
 
   return (
     <div className="absolute inset-0 pointer-events-none">
-      <div className="relative h-full">
-        {/* Background Sky (static)
+      <div className="relative h-full flex items-center justify-center">
         <div
-          className="absolute inset-0 -z-50"
-          style={{
-            backgroundImage: "url(/sky.jpg)", // public/sky.jpg -> /sky.jpg
-            backgroundPosition: "bottom",
-            backgroundSize: "cover",
-          }}
-        /> */}
+          className="inset-0 -z-50 text-6xl md:text-8xl font-bold opacity-90"
+        >
+          CONTACT ME  
+        </div> 
         
 
         {/* Mountain Layer 3 */}

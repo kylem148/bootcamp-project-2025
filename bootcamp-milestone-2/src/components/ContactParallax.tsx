@@ -16,12 +16,6 @@ const ContactParallax = () => {
     >
       {/* Parallax is positioned absolutely inside this section */}
       <ParallaxBackground targetRef={contactRef} />
-
-      {/* Put your actual contact content here, above the parallax */}
-      <div className="relative z-10 p-8 text-white">
-        <h2 className="text-3xl font-bold">Contact</h2>
-        <p>…content…</p>
-      </div>
     </section>
   );
 };
