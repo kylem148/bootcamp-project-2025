@@ -1,6 +1,6 @@
 import React from "react";
 import Timeline from "../components/Timeline";
- 
+
 function Resume() {
   const data = [
     {
@@ -147,7 +147,7 @@ function Resume() {
     },
   ];
   return (
-    <div className="relative w-full overflow-clip">
+    <div id="resume" className="scroll-mt-20 relative w-full overflow-clip">
       <Timeline data={data} />
     </div>
   );

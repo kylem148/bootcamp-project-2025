@@ -27,27 +27,30 @@ function Navbar() {
       <nav className="hidden md:flex items-center gap-12">
         <a
           className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
-          href="#"
+          href="#about"
         >
           HOME
         </a>
         <a
           className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
-          href="#"
+          href="#blog"
         >
           BLOG
         </a>
         <a
           className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
-          href="#"
+          href="#resume"
         >
           RESUME
         </a>
       </nav>
 
-      <button className="hidden md:block bg-[#a7a7a7] text-black py-3 px-8 rounded-full border-none font-medium transition-all duration-500 hover:bg-white cursor-pointer z-50">
+      <a
+        className="hidden md:block bg-[#a7a7a7] text-black py-3 px-8 rounded-full border-none font-medium transition-all duration-500 hover:bg-white cursor-pointer z-50"
+        href="#contact"
+      >
         CONTACT
-      </button>
+      </a>
 
       {/* Mobile Button */}
       <button
@@ -67,25 +70,25 @@ function Navbar() {
         <nav className="flex flex-col gap-6 items-center">
           <a
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
-            href="#"
+            href="#about"
           >
             HOME
           </a>
           <a
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
-            href="#"
+            href="#blog"
           >
             BLOG
           </a>
           <a
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
-            href="#"
+            href="#resume"
           >
             RESUME
           </a>
           <a
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
-            href="#"
+            href="#contact"
           >
             CONTACT
           </a>
