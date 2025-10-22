@@ -5,7 +5,10 @@ import { Blogs } from "../constants/blogData";
 
 function BlogList() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen">
+    <main
+      id="blog"
+      className="flex flex-col items-center justify-center min-h-screen scroll-mt-20"
+    >
       <h1
         className="
             text-heading mt-7
