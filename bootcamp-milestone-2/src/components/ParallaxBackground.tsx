@@ -16,7 +16,7 @@ type Props = {
 const ParallaxBackground = ({ targetRef }: Props) => {
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start 0%", "end 40%"],
+    offset: ["start 10%", "end 40%"],
   });
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {});
