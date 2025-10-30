@@ -162,18 +162,6 @@ const iconsList = [
     name: "gsap",
     image: "/gsap.svg",
   },
-  {
-    name: "threejs",
-    image: "/gsap.svg",
-  },
-  {
-    name: "figma",
-    image: "/gsap.svg",
-  },
-  {
-    name: "aws",
-    image: "/gsap.svg",
-  },
 ];
 
 export { iconsList, experiences };
