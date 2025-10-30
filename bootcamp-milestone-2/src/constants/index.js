@@ -42,8 +42,9 @@ const experiences = [
             className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
           />
           <p className="pt-5 mb-8 text-md text-neutral-800 md:text-lg dark:text-neutral-200">
-            Lorem ipsum somthing something
-            aldkfjalksdjfljalksjdkfljalsjdlkfjlkajsdlkfjlkajsdlkfjlkajsdlkfjlkajsdf
+            Starting from a young age, I was fascinated by video games and
+            aspired to create my own. This passion led me to explore game
+            development using C# and Unity.
           </p>
         </div>
       </div>
@@ -75,8 +76,8 @@ const experiences = [
             className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
           />
           <p className="pt-5 mb-8 text-md text-neutral-800 md:text-lg dark:text-neutral-200">
-            Lorem ipsum somthing something
-            aldkfjalksdjfljalksjdkfljalsjdlkfjlkajsdlkfjlkajsdlkfjlkajsdlkfjlkajsdf
+            In 2023, I delved into simulation development using Java. I created
+            various similuations envolving phyiscal shapes and their interations. 
           </p>
         </div>
       </div>
@@ -124,8 +125,10 @@ const experiences = [
             className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
           />
           <p className="pt-5 mb-8 text-md text-neutral-800 md:text-lg dark:text-neutral-200">
-            Lorem ipsum somthing something
-            aldkfjalksdjfljalksjdkfljalsjdlkfjlkajsdlkfjlkajsdlkfjlkajsdlkfjlkajsdf
+            Currently, I am focused on web development using Next.js and
+            TailwindCSS. I have built several responsive and dynamic websites,
+            honing my skills in front-end development and user experience
+            design.
           </p>
         </div>
       </div>

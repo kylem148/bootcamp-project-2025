@@ -41,7 +41,8 @@ const Timeline: React.FC<TimelineProps> = ({ data }) => {
           My Journey
         </h2>
         <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          Through cs and whatnot smthn idk
+          Through computer science, I am constantly evolving, learning, and pushing
+          my learning.
         </p>
       </div>
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">

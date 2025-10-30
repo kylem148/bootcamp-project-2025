@@ -5,7 +5,6 @@ const Contact = () => {
     <div id="contact" className="grid mt-20 md:mt-50 lg:grid-cols-2 items-start gap-16 p-6 mx-auto max-w-5xl max-lg:max-w-2xl bg-neutral-700 border-6 border-neutral-800 rounded-2xl scroll-mt-20">
       <div>
         <h2 className="text-white text-3xl font-bold">Let's Talk</h2>
-        <p className="text-[15px] text-neutral-200 mt-4 leading-relaxed">Have some big idea or brand to develop and need help? Then reach out I'd love to hear about your project  and provide help.</p>
         <div className="mt-12">
           <h2 className="text-neutral-200 text-base font-semibold">Email</h2>
           <ul className="mt-4">
