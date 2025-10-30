@@ -1,30 +1,24 @@
-import Techicon from "./TechIcon";
-import { iconsList } from "../constants";
+import {
+  ScrollVelocityContainer,
+  ScrollVelocityRow,
+} from "@/components/scroll-based-velocity"; 
+import { iconsList } from '@/constants/index.js';
 
-function Skills() {
+
+const Skills = () => {
   return (
-    <div className="hidden h-60 md:flex flex-col items-center justify-center ">
-      <div className="flex flex-col items-center justify-center overflow-hidden">
-        <h1
-          className="text-heading"
-        >
-          Skills
-        </h1>
-      </div>
-      <div className="w-9/10 items-center justify-center flex flex-col overflow-hidden">
-        <div className="marquee h-32">
-          <div className="marquee-box md:gap-12 gap-5">
-            {iconsList.map((icon, index) => (
-              <Techicon key={index} icon={icon} />
-            ))}
-            {iconsList.map((icon, index) => (
-              <Techicon key={index} icon={icon} />
-            ))}
-          </div>
-        </div>
-      </div>
+    <div>
+      <ScrollVelocityContainer className="text-amber-50 text-4xl font-bold md:text-7xl">
+        <ScrollVelocityRow baseVelocity={10} direction={1}>
+          {iconsList.map((icon, index) => (
+            <span key={index} className="mx-4 inline-block">
+              <img src={icon.image} alt={icon.name} className="h-15 w-15" />
+            </span>
+          ))}
+        </ScrollVelocityRow>
+      </ScrollVelocityContainer>
     </div>
   );
-}
+};
 
 export default Skills;

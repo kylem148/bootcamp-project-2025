@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 :root {
   --background: #ffffff;
@@ -19,54 +20,6 @@
   }
 }
 
-/* marquee */
-.marquee {
-  width: 100dvw;
-  overflow: hidden;
-  position: relative;
-}
-.marquee-box {
-  display: flex;
-  align-items: center;
-  width: 200%;
-  height: 150%;
-  position: absolute;
-  overflow: hidden;
-  animation: marquee 60s linear infinite;
-}
-
-@media (max-width: 768px) {
-  .marquee-box {
-    height: 100%; /* or any value you prefer */
-  }
-}
-.marquee-item {
-  float: left;
-}
-.marquee-item:after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  right: -100%;
-  bottom: -100%;
-  left: -100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(229, 172, 142, 0),
-    rgba(255, 255, 255, 0.5) 50%,
-    rgba(229, 172, 142, 0)
-  );
-}
-
-@keyframes marquee {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: -100%;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
@@ -81,4 +34,5 @@ body {
 
 .text-heading {
   @apply font-bold text-4xl md:text-4xl;
+
 }
