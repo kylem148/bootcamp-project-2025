@@ -2,14 +2,69 @@
 
 import Link from "next/link";
 import { Blogs } from "../constants/blogData";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 function BlogList() {
+  useGSAP(() => {
+    const titleStartPosition = window.innerHeight * 4.3;
+    const startPosition = window.innerHeight * 0.1;
+
+    gsap.fromTo(
+      "#blog-title",
+      {
+        y: -50,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "h1",
+          start: `+=${titleStartPosition}`,
+          toggleActions: "play none none none",
+          once: true,
+          //markers: true,
+        },
+      }
+
+    )
+
+    gsap.fromTo(
+      "#card-list article",
+      {
+        y: 500,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.4,
+        ease: "power1.out",
+        stagger: 0.1,
+        clearProps: "transform", 
+        scrollTrigger: {
+          trigger: "#card-list article",
+          start: `+=${startPosition}`,
+          toggleActions: "play none none none",
+          once: true,
+          //markers: true,
+        },
+      }
+    );
+  }, []);
+
   return (
     <main
       id="blog"
       className="flex flex-col items-center justify-center min-h-screen scroll-mt-20 "
     >
       <h1
+        id="blog-title"
         className="
             text-heading mt-7
           "

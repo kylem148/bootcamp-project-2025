@@ -33,7 +33,7 @@ function AboutMe() {
   }, []);
 
   useGSAP(() => {
-    const startPosition  = window.innerHeight * 0.0001;
+    const startPosition  = window.innerHeight * 0.01;
     ["t6", "t5", "t4", "t3", "t2", "t1"].forEach((id) => {
       gsap.fromTo(
         `#${id}`,

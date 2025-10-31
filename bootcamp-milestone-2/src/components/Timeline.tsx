@@ -32,10 +32,10 @@ const Timeline: React.FC<TimelineProps> = ({ data }) => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: "#title",
-          start: "top 60%",
-          end: "bottom 15%",
+          start: `${window.innerHeight * 0.2}px`,
           toggleActions: "play none none none",
           once: true,
+          //markers: true,
         },
       }
     );
@@ -72,7 +72,7 @@ const Timeline: React.FC<TimelineProps> = ({ data }) => {
         >
           My Journey
         </h2>
-        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
+        <p id="title" className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
           Through computer science, I am constantly evolving, learning, and
           pushing my learning.
         </p>
