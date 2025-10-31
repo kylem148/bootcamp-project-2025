@@ -7,7 +7,7 @@ function BlogList() {
   return (
     <main
       id="blog"
-      className="flex flex-col items-center justify-center min-h-screen scroll-mt-20"
+      className="flex flex-col items-center justify-center min-h-screen scroll-mt-20 "
     >
       <h1
         className="

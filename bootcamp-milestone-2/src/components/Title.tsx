@@ -1,4 +1,8 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
 function Title() {
+
   return (
     <>
       <main>
@@ -15,7 +19,7 @@ function Title() {
         <div className="h-0 w-[40rem] absolute top-[20%] right-[-5%] shadow-[0_0_900px_20px_#60ad2d] -rotate-[30deg]"></div>
 
         <div className="z-2000 transition-transform duration-100 ease-out w-screen h-screen bg-neutral-900">
-          <h1 className="text-amber-50 flex items-center justify-center h-screen text-6xl font-bold">
+          <h1 className="title-text text-white flex items-center justify-center h-screen text-6xl font-bold">
             Kyle Morgan
           </h1>
         </div>

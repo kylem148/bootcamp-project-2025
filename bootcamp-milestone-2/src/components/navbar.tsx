@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -14,6 +14,53 @@ function Navbar() {
       MobileMenu?.classList.add("hidden");
     }
   };
+
+  useGSAP(() => {
+    // Animate each nav item from top to orignal position one after another
+    gsap.fromTo(
+      "#desktopMenu nav a",
+      {
+        y: -50,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out",
+        stagger: 0.2,
+        delay: 0.2,
+      }
+    );
+    gsap.fromTo(
+      "#desktopMenu h1",
+      {
+        y: -50,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out",
+        delay: 0.2,
+      }
+    )
+    gsap.fromTo(
+      "#desktopMenu a[href='#contact']",
+      {
+        y: -50,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out",   
+        delay: 0.4,
+      }
+    )
+  }, []);
 
   return (
     // Navbar component for desktop
