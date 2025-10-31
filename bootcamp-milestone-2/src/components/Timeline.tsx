@@ -1,6 +1,10 @@
 "use client";
 import { useScroll, useTransform, motion } from "motion/react";
 import React, { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 interface TimelineItem {
   title: string;
@@ -12,6 +16,31 @@ interface TimelineProps {
 }
 
 const Timeline: React.FC<TimelineProps> = ({ data }) => {
+  // Add subtitle animation once component is in view
+  useGSAP(() => {
+    gsap.fromTo(
+      "#title",
+      {
+        y: -50,
+        opacity: 0,
+        immediateRender: false,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#title",
+          start: "top 60%",
+          end: "bottom 15%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      }
+    );
+  }, []);
+
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
@@ -37,12 +66,15 @@ const Timeline: React.FC<TimelineProps> = ({ data }) => {
       ref={containerRef}
     >
       <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
-        <h2 className="font-bold text-4xl md:text-5xl mb-4 text-black dark:text-white max-w-4xl">
+        <h2
+          id="title"
+          className="font-bold text-4xl md:text-5xl mb-4 text-black dark:text-white max-w-4xl"
+        >
           My Journey
         </h2>
         <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          Through computer science, I am constantly evolving, learning, and pushing
-          my learning.
+          Through computer science, I am constantly evolving, learning, and
+          pushing my learning.
         </p>
       </div>
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">

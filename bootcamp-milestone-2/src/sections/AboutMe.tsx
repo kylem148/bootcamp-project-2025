@@ -1,6 +1,37 @@
 import Skills from "../components/Skills";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import scrollTrigger from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(scrollTrigger);
 
 function AboutMe() {
+  
+  useGSAP(() => {
+    gsap.fromTo(
+      "#about h1",
+      {
+        y: -50,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#about h1",
+          start: "+=350",
+          end: "+=300",
+          toggleActions: "play none none none",
+          once: true,
+          //markers: true,
+        },
+      }
+    );
+  }
+    )
+  
   return (
     <div id="about"className="bg-neutral-950 md:flex flex-col h-screen w-screen overflow-hidden p-5 md:p-20 py-30 scroll-mt-20">
       <div className="flex-1 flex flex-col md:flex-row">
