@@ -5,6 +5,9 @@ import { useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 interface Blog {
   title: string;
   slug: string;
@@ -12,7 +15,6 @@ interface Blog {
   image: string;
   imageAlt: string;
 }
-gsap.registerPlugin(ScrollTrigger);
 
 function BlogList() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -49,7 +51,7 @@ function BlogList() {
     if (loading || blogs.length === 0) return;
 
     const titleStartPosition = window.innerHeight * 4.3;
-    const startPosition = window.innerHeight * 0.1;
+    const startPosition = window.innerHeight;
 
     gsap.fromTo(
       "#blog-title",
@@ -70,7 +72,6 @@ function BlogList() {
         },
       }
     );
-
     gsap.fromTo(
       "#card-list article",
       {
@@ -86,7 +87,7 @@ function BlogList() {
         clearProps: "transform",
         scrollTrigger: {
           trigger: "#card-list article",
-          start: `+=${startPosition}`,
+          start: `-=${startPosition}`,
           toggleActions: "play none none none",
           once: true,
         },
