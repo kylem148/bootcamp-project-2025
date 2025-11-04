@@ -1,10 +1,64 @@
 import React from "react";
+import { useState } from "react";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const response = await fetch("/api/contacts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div
       id="contact"
-      className="grid mt-20 md:mt-50 lg:grid-cols-2 items-start gap-16 p-6 mx-auto max-w-5xl max-lg:max-w-2xl bg-neutral-700 border-6 border-neutral-800 rounded-2xl scroll-mt-20"
+      className="grid mt-20 md:mt-50 lg:grid-cols-2 items-start gap-16 p-6 mx-auto max-w-5xl max-lg:max-w-2xl bg-neutral-700 border-[6px] border-neutral-800 rounded-2xl scroll-mt-20"
     >
       <div>
         <h2 className="text-white text-3xl font-bold">Let's Talk</h2>
@@ -12,21 +66,30 @@ const Contact = () => {
           <h2 className="text-neutral-200 text-base font-semibold">Email</h2>
           <ul className="mt-4">
             <li className="flex items-center">
-              <div className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20px"
-                  height="20px"
-                  fill="#000"
-                  viewBox="0 0 479.058 479.058"
+              <div className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0 hover:bg-neutral-300 ">
+                <a
+                  href="mailto:kyle@themorganization.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <path
-                    d="M434.146 59.882H44.912C20.146 59.882 0 80.028 0 104.794v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159L239.529 264.631 39.173 90.982a14.902 14.902 0 0 1 5.738-1.159zm0 299.411H44.912c-8.26 0-14.971-6.71-14.971-14.971V122.615l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"
-                    data-original="#000000"
-                  />
-                </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20px"
+                    height="20px"
+                    fill="#000"
+                    viewBox="0 0 479.058 479.058"
+                  >
+                    <path
+                      d="M434.146 59.882H44.912C20.146 59.882 0 80.028 0 104.794v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159L239.529 264.631 39.173 90.982a14.902 14.902 0 0 1 5.738-1.159zm0 299.411H44.912c-8.26 0-14.971-6.71-14.971-14.971V122.615l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"
+                      data-original="#000000"
+                    />
+                  </svg>
+                </a>
               </div>
-              <a href="javascript:void(0)" className="text-sm ml-4">
+              <a
+                href="mailto:kyle@themorganization.com"
+                className="text-sm ml-4"
+              >
                 <small className="block text-neutral-200">Mail</small>
                 <span className="font-semibold text-green-300">
                   kyle@themorganization.com
@@ -40,7 +103,11 @@ const Contact = () => {
           <h2 className="text-neutral-200 text-base font-semibold">Socials</h2>
           <ul className="flex mt-4 space-x-4">
             <li className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0 hover:bg-neutral-300">
-              <a href="javascript:void(0)">
+              <a
+                href="https://github.com/kylem148"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20px"
@@ -48,15 +115,16 @@ const Contact = () => {
                   fill="#000"
                   viewBox="0 0 24 24"
                 >
-                  <path
-                    d="M6.812 13.937H9.33v9.312c0 .414.335.75.75.75l4.007.001a.75.75 0 0 0 .75-.75v-9.312h2.387a.75.75 0 0 0 .744-.657l.498-4a.75.75 0 0 0-.744-.843h-2.885c.113-2.471-.435-3.202 1.172-3.202 1.088-.13 2.804.421 2.804-.75V.909a.75.75 0 0 0-.648-.743A26.926 26.926 0 0 0 15.071 0c-7.01 0-5.567 7.772-5.74 8.437H6.812a.75.75 0 0 0-.75.75v4c0 .414.336.75.75.75zm.75-3.999h2.518a.75.75 0 0 0 .75-.75V6.037c0-2.883 1.545-4.536 4.24-4.536.878 0 1.686.043 2.242.087v2.149c-.402.205-3.976-.884-3.976 2.697v2.755c0 .414.336.75.75.75h2.786l-.312 2.5h-2.474a.75.75 0 0 0-.75.75V22.5h-2.505v-9.312a.75.75 0 0 0-.75-.75H7.562z"
-                    data-original="#000000"
-                  />
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                 </svg>
               </a>
             </li>
             <li className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0 hover:bg-neutral-300">
-              <a href="javascript:void(0)">
+              <a
+                href="http://www.linkedin.com/in/kyle-morgan-2aa912389"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20px"
@@ -72,7 +140,11 @@ const Contact = () => {
               </a>
             </li>
             <li className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0 hover:bg-neutral-300">
-              <a href="javascript:void(0)">
+              <a
+                href="https://instagram.com/kyle._.asdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20px"
@@ -85,34 +157,65 @@ const Contact = () => {
               </a>
             </li>
           </ul>
+          <a 
+            href="/Kyle_Morgan_Resume.pdf" download
+            className="text-white bg-neutral-500 hover:bg-neutral-600 border-4 border-neutral-600 tracking-wide rounded-md text-xs font-bold px-1.5 py-1.5 w-[150px] cursor-pointer mt-10 text-center inline-block">
+            Download Resume
+          </a>
         </div>
       </div>
 
-      <form className="lg:ml-auto space-y-4">
+      <form onSubmit={handleSubmit} className="lg:ml-auto space-y-4">
+        {submitStatus === "success" && (
+          <p className="text-green-400">Message sent successfully!</p>
+        )}
+        {submitStatus === "error" && (
+          <p className="text-red-400">
+            There was an error sending your message. Please try again.
+          </p>
+        )}
         <input
           type="text"
+          name="name"
           placeholder="Name"
-          className="w-full rounded-md py-3 px-4 bg-slate-100 text-slate-900 text-sm border border-gray-200 focus:border-slate-900 outline-none "
+          value={formData.name}
+          onChange={handleChange}
+          required
+          className="w-full rounded-md py-3 px-4 mt-3 bg-slate-100 text-slate-900 text-sm border border-gray-200 focus:border-slate-900 outline-none "
         />
         <input
           type="email"
+          name="email"
           placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
           className="w-full rounded-md py-3 px-4 bg-slate-100 text-slate-900 text-sm border border-gray-200 focus:border-slate-900 outline-none "
         />
         <input
           type="text"
+          name="subject"
           placeholder="Subject"
+          value={formData.subject}
+          onChange={handleChange}
+          required
           className="w-full rounded-md py-3 px-4 bg-slate-100 text-slate-900 text-sm border border-gray-200 focus:border-slate-900 outline-none "
         />
         <textarea
+          name="message"
           placeholder="Message"
+          value={formData.message}
+          onChange={handleChange}
+          rows={4}
+          required
           className="w-full rounded-md px-4 bg-slate-100 text-slate-900 text-sm pt-3 border border-gray-200 focus:border-slate-900 outline-none "
         ></textarea>
         <button
-          type="button"
+          type="submit"
+          disabled={isSubmitting}
           className="text-white bg-neutral-900 hover:bg-neutral-800 tracking-wide rounded-md text-sm font-medium px-4 py-3 w-full cursor-pointer !mt-2 border-0"
         >
-          Send message
+          {isSubmitting ? "Sending..." : "Send Message"}
         </button>
       </form>
     </div>
