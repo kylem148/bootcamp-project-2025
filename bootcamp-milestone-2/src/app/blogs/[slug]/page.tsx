@@ -13,6 +13,15 @@ type BlogDoc = {
   slug: string;
 };
 
+// Helper function to format date
+const formatDate = (date: Date) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+
 export async function generateStaticParams() {
   try {
     await connectDB();
@@ -31,7 +40,9 @@ export default async function BlogPage({
 }) {
   try {
     await connectDB();
-    const doc = await Blog.findOne({ slug: params.slug }).lean() as BlogDoc | null;
+    const doc = (await Blog.findOne({
+      slug: params.slug,
+    }).lean()) as BlogDoc | null;
 
     if (!doc) return notFound();
 
@@ -64,7 +75,7 @@ export default async function BlogPage({
               {doc.title}
             </h1>
             <p className="mt-10 font-bold text-amber-50 opacity-90 text-3xl md:text-5xl">
-              {dateStr}
+              {formatDate(new Date(dateStr))}
             </p>
           </div>
         </section>
