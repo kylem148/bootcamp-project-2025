@@ -16,7 +16,6 @@ interface TimelineProps {
 }
 
 const Timeline: React.FC<TimelineProps> = ({ data }) => {
-  // Add subtitle animation once component is in view
   useGSAP(() => {
     gsap.fromTo(
       "#title",
@@ -32,10 +31,10 @@ const Timeline: React.FC<TimelineProps> = ({ data }) => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: "#title",
-          start: `${window.innerHeight * 0.2}px`,
+          start: `-=${window.innerHeight *0.7}px`,
           toggleActions: "play none none none",
           once: true,
-          //markers: true,
+          markers: true,
         },
       }
     );
