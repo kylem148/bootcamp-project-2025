@@ -1,9 +1,8 @@
+import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import connectDB from "@/database/db";
 import Blog from "@/database/blogSchema";
-
-export const dynamic = "force-static";
 
 type BlogDoc = {
   title: string;
@@ -53,6 +52,7 @@ export default async function BlogPage({
             sizes="100vw"
             className="object-cover object-center opacity-70"
             priority
+            unoptimized
           />
 
           {/* Overlay */}
