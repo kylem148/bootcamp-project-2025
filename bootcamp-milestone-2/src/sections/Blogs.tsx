@@ -1,14 +1,57 @@
 "use client";
 
 import Link from "next/link";
-import { Blogs } from "../constants/blogData";
+import { useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
+// Type definition for blog data
+type Blog = {
+  _id: string;
+  title: string;
+  date: Date; 
+  description: string;
+  image: string;
+  imageAlt: string;
+  slug: string;
+};
+
 function BlogList() {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch blogs from API
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await fetch("/api/blogs");
+        const data = await response.json();
+        setBlogs(data);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  // Helper function to format date
+  const formatDate = (date: Date) => {
+    return new Date(date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
   useGSAP(() => {
+    // Only run animations after blogs are loaded
+    if (loading || blogs.length === 0) return;
+
     const titleStartPosition = window.innerHeight * 4.3;
     const startPosition = window.innerHeight * 0.1;
 
@@ -28,11 +71,9 @@ function BlogList() {
           start: `+=${titleStartPosition}`,
           toggleActions: "play none none none",
           once: true,
-          //markers: true,
         },
       }
-
-    )
+    );
 
     gsap.fromTo(
       "#card-list article",
@@ -46,17 +87,28 @@ function BlogList() {
         duration: 0.4,
         ease: "power1.out",
         stagger: 0.1,
-        clearProps: "transform", 
+        clearProps: "transform",
         scrollTrigger: {
           trigger: "#card-list article",
           start: `+=${startPosition}`,
           toggleActions: "play none none none",
           once: true,
-          //markers: true,
         },
       }
     );
-  }, []);
+  }, [blogs, loading]);
+
+  if (loading) {
+    return (
+      <main
+        id="blog"
+        className="flex flex-col items-center justify-center min-h-screen scroll-mt-20"
+      >
+        <h1 className="text-heading mt-7">Blog</h1>
+        <p className="text-neutral-400 mt-4">Loading blogs...</p>
+      </main>
+    );
+  }
 
   return (
     <main
@@ -75,7 +127,7 @@ function BlogList() {
         id="card-list"
         className="cards flex w-screen flex-wrap justify-center gap-8 p-1 grow-3 m-10 md:m-20 "
       >
-        {Blogs.map((blog) => (
+        {blogs.map((blog) => (
           <article
             key={blog.slug}
             className={[
@@ -90,7 +142,9 @@ function BlogList() {
             ].join(" ")}
           >
             <header className="flex flex-col gap-1">
-              <p className="text-sm/5 text-neutral-300">{blog.date}</p>
+              <p className="text-sm/5 text-neutral-300">
+                {formatDate(blog.date)}
+              </p>
               <h2 className="text-lg font-semibold">{blog.title}</h2>
               <Link
                 href={`/blogs/${blog.slug}`}
@@ -108,13 +162,15 @@ function BlogList() {
         ))}
 
         {/* Mobile View */}
-        {Blogs.map((blog) => (
+        {blogs.map((blog) => (
           <article
-            key={blog.slug}
+            key={`mobile-${blog.slug}`}
             className="md:hidden card flex flex-col p-6 border-4 border-neutral-500 rounded-2xl bg-neutral-800 shadow-[#333230] shadow-md transition-transform duration-200 hover:-translate-y-4 flex-1 basis-[200px] h-[300px] min-w-[150px] max-w-[250px]"
           >
             <header className="flex flex-col gap-1">
-              <p className="text-sm/5 text-neutral-300">{blog.date}</p>
+              <p className="text-sm/5 text-neutral-300">
+                {formatDate(blog.date)}
+              </p>
               <h2 className="text-lg font-semibold">{blog.title}</h2>
               <Link
                 href={`/blogs/${blog.slug}`}
