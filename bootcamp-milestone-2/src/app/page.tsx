@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Title from "../components/Title";
 import AboutMe from "../sections/AboutMe";
 import Blogs from "../sections/Blogs";
-import Resume from "../sections/Resume";
+import Portfolio from "../sections/Portfolio";
 import Footer from "../components/Footer";
 import Navbar from "@/components/Navbar";
 import ContactParallax from "@/components/ContactParallax";
@@ -52,7 +52,7 @@ export default function Home() {
       <main className=" text-white">
         <div>
           <Navbar />
-          <Resume />
+          <Portfolio />
           <Blogs />
           <ContactParallax />
           <Contact />

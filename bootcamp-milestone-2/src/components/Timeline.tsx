@@ -34,7 +34,7 @@ const Timeline: React.FC<TimelineProps> = ({ data }) => {
           start: `-=${window.innerHeight *0.7}px`,
           toggleActions: "play none none none",
           once: true,
-          markers: true,
+          //markers: true,
         },
       }
     );

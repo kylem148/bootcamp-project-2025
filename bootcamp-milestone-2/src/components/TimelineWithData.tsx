@@ -1,3 +1,9 @@
+// --IGNORE-- for personal notes:
+// 1. gets raw json experience data from a MongoDB database
+// 2. passes it to experinceContent -> turns it into TimelineItem format (json -> react)
+// 3. passes that to Timeline component to render the timeline
+
+
 "use client";
 import { useEffect, useState } from "react";
 import Timeline from "@/components/Timeline";

@@ -82,7 +82,7 @@ function Navbar() {
           className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
           href="#resume"
         >
-          RESUME
+          PORTFOLIO
         </a>
         <a
           className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
@@ -125,7 +125,7 @@ function Navbar() {
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
             href="#resume"
           >
-            RESUME
+            PORTFOLIO
           </a>
           <a
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
