@@ -8,7 +8,7 @@ gsap.registerPlugin(scrollTrigger);
 function AboutMe() {
   useGSAP(() => {
     // Calculate start position based on screen height ratio
-    const startPosition  = window.innerHeight * 0.5;
+    const startPosition = window.innerHeight * 0.5;
 
     gsap.fromTo(
       "#about h1",
@@ -33,7 +33,7 @@ function AboutMe() {
   }, []);
 
   useGSAP(() => {
-    const startPosition  = window.innerHeight * 0.01;
+    const startPosition = window.innerHeight * 0.01;
     ["t6", "t5", "t4", "t3", "t2", "t1"].forEach((id) => {
       gsap.fromTo(
         `#${id}`,
@@ -70,11 +70,23 @@ function AboutMe() {
             About me
           </h1>
           <p className="text-[15px] md:text-[20px] p-5 text-left">
-            <div id="t1">Hello! I'm Kyle Morgan, a passionate computer science student with a </div>
-            <div id="t2">strong interest in software development and technology. I love </div>
-            <div id="t3">exploring new programming languages and frameworks, and I'm always </div>
-            <div id="t4">eager to take on new challenges that allow me to grow my skills. My </div>
-            <div id="t5">goal is to leverage technology to create innovative solutions that </div>
+            <div id="t1">
+              Hello! I'm Kyle Morgan, a passionate computer science student with
+              a{" "}
+            </div>
+            <div id="t2">
+              strong interest in software development and technology. I love{" "}
+            </div>
+            <div id="t3">
+              exploring new programming languages and frameworks, and I'm always{" "}
+            </div>
+            <div id="t4">
+              eager to take on new challenges that allow me to grow my skills.
+              My{" "}
+            </div>
+            <div id="t5">
+              goal is to leverage technology to create innovative solutions that{" "}
+            </div>
             <div id="t6">make a positive impact on people's lives. </div>
           </p>
         </div>
