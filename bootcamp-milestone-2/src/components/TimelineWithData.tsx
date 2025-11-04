@@ -1,0 +1,62 @@
+"use client";
+import { useEffect, useState } from "react";
+import Timeline from "@/components/Timeline";
+import ExperienceContent from "@/components/ExperienceContent";
+import type { Experience } from "@/database/experienceSchema";
+
+interface TimelineItem {
+  title: string;
+  content: React.ReactNode;
+}
+
+const TimelineWithData = () => {
+  const [timelineData, setTimelineData] = useState<TimelineItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchExperiences = async () => {
+      try {
+        const response = await fetch("/api/experiences");
+        if (!response.ok) {
+          throw new Error("Failed to fetch experiences");
+        }
+        const experiences: Experience[] = await response.json();
+
+        // Convert MongoDB data to Timeline format
+        const timelineItems: TimelineItem[] = experiences.map((exp) => ({
+          title: exp.title,
+          content: <ExperienceContent experience={exp} />,
+        }));
+
+        setTimelineData(timelineItems);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchExperiences();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        Loading experiences...
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-64 text-red-500">
+        Error: {error}
+      </div>
+    );
+  }
+
+  return <Timeline data={timelineData} />;
+};
+
+export default TimelineWithData;
