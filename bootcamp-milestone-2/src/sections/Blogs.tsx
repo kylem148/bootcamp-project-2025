@@ -5,18 +5,14 @@ import { useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
-
-// Type definition for blog data
-type Blog = {
-  _id: string;
+interface Blog {
   title: string;
-  date: Date; 
-  description: string;
+  slug: string;
+  date: Date;
   image: string;
   imageAlt: string;
-  slug: string;
-};
+}
+gsap.registerPlugin(ScrollTrigger);
 
 function BlogList() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
