@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import connectDB from "@/database/db";
@@ -13,15 +12,6 @@ type BlogDoc = {
   slug: string;
 };
 
-// Helper function to format date
-const formatDate = (date: Date) => {
-  return new Date(date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
-
 export async function generateStaticParams() {
   try {
     await connectDB();
@@ -32,6 +22,15 @@ export async function generateStaticParams() {
     return [];
   }
 }
+
+// Helper function to format date
+const formatDate = (date: Date) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
 
 export default async function BlogPage({
   params,
