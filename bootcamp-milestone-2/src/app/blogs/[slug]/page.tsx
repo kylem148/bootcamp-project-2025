@@ -156,28 +156,35 @@ export default async function BlogPage({
                   <div className="w-10 h-10 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-white text-sm font-bold">You</span>
                   </div>
-                  <div className="flex flex-row space-x-3 flex-1">
-                    <textarea
-                      placeholder="Share your thoughts..."
-                      rows={2}
-                      className="flex-1 px-4 py-3 bg-black text-white rounded-lg border border-gray-600 focus:border-green-500 focus:outline-none resize-none text-sm placeholder-gray-400"
+                  <div className="flex flex-col space-y-3 flex-1">
+                    <input
+                      type="text"
+                      placeholder="Your name..."
+                      className="px-4 py-2 bg-black text-white rounded-lg border border-gray-600 focus:border-green-500 focus:outline-none text-sm placeholder-gray-400"
                     />
-                    <button className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 flex items-center space-x-2 self-end">
-                      <span>Send</span>
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                        />
-                      </svg>
-                    </button>
+                    <div className="flex flex-row space-x-3">
+                      <textarea
+                        placeholder="Share your thoughts..."
+                        rows={2}
+                        className="flex-1 px-4 py-3 bg-black text-white rounded-lg border border-gray-600 focus:border-green-500 focus:outline-none resize-none text-sm placeholder-gray-400"
+                      />
+                      <button className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 flex items-center space-x-2 self-end">
+                        <span>Send</span>
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                          />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
