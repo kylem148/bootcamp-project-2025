@@ -50,14 +50,12 @@ function BlogList() {
     // Only run animations after blogs are loaded
     if (loading || blogs.length === 0) return;
 
-    const titleStartPosition = window.innerHeight * 4.3;
-    const startPosition = window.innerHeight;
-
     gsap.fromTo(
       "#blog-title",
       {
         y: -50,
         opacity: 0,
+        immediateRender: false,
       },
       {
         y: 0,
@@ -65,29 +63,56 @@ function BlogList() {
         duration: 0.8,
         ease: "power2.out",
         scrollTrigger: {
-          trigger: "h1",
-          start: `+=${titleStartPosition}`,
+          trigger: "#blog-title",
+          start: "top 80%",
           toggleActions: "play none none none",
           once: true,
         },
       }
     );
+
+    // Animate desktop cards
     gsap.fromTo(
-      "#card-list article",
+      ".desktop-card",
       {
-        y: 500,
+        y: 100,
         opacity: 0,
+        immediateRender: false,
       },
       {
         y: 0,
         opacity: 1,
-        duration: 0.4,
-        ease: "power1.out",
+        duration: 0.6,
+        ease: "power2.out",
         stagger: 0.1,
         clearProps: "transform",
         scrollTrigger: {
-          trigger: "#card-list article",
-          start: `-=${startPosition}`,
+          trigger: "#card-list",
+          start: "top 85%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      }
+    );
+
+    // Animate mobile cards
+    gsap.fromTo(
+      ".mobile-card",
+      {
+        y: 500,
+        opacity: 0,
+        immediateRender: false,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+        stagger: 0.1,
+        clearProps: "transform",
+        scrollTrigger: {
+          trigger: "#card-list",
+          start: "top 85%",
           toggleActions: "play none none none",
           once: true,
         },
@@ -129,7 +154,7 @@ function BlogList() {
             key={blog.slug}
             className={[
               // base card
-              "hidden card relative  md:flex flex-col p-6 rounded-2xl bg-neutral-800",
+              "desktop-card hidden card relative  md:flex flex-col p-6 rounded-2xl bg-neutral-800",
               "shadow-neutral-950 shadow-lg",
               "transition-transform duration-200 hover:-translate-y-4 border-4 border-neutral-500",
               // sizing
@@ -162,7 +187,7 @@ function BlogList() {
         {blogs.map((blog) => (
           <article
             key={`mobile-${blog.slug}`}
-            className="md:hidden card flex flex-col p-6 border-4 border-neutral-500 rounded-2xl bg-neutral-800 shadow-[#333230] shadow-md transition-transform duration-200 hover:-translate-y-4 flex-1 basis-[200px] h-[300px] min-w-[150px] max-w-[250px]"
+            className="mobile-card md:hidden card flex flex-col p-6 border-4 border-neutral-500 rounded-2xl bg-neutral-800 shadow-[#333230] shadow-md transition-transform duration-200 hover:-translate-y-4 flex-1 basis-[200px] h-[300px] min-w-[150px] max-w-[250px]"
           >
             <header className="flex flex-col gap-1">
               <p className="text-sm/5 text-neutral-300">

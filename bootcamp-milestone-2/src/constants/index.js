@@ -166,4 +166,88 @@ const iconsList = [
   },
 ];
 
-export { iconsList, experiences };
+const entry1_comments = [
+  {
+    name: "Name1",
+    timeAgo: "2h ago",
+    text: "This is the coolest post ever.",
+  },
+  {
+    name: "Name2",
+    timeAgo: "5h ago",
+    text: "wowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowowow",
+  },
+  {
+    name: "Name3",
+    timeAgo: "1d ago",
+    text: "I hate this post",
+  },
+  {
+    name: "Name4",
+    timeAgo: "3d ago",
+    text: "boooo",
+  },
+];
+
+const entry2_comments = [
+  {
+    name: "NameA",
+    timeAgo: "3h ago",
+    text: "spectacular work.",
+  },
+  {
+    name: "NameB",
+    timeAgo: "6h ago",
+    text: "how dare he say this",
+  },
+  {
+    name: "NameC",
+    timeAgo: "2d ago",
+    text: "i agree very much with this post",
+  },
+];
+
+const entry3_comments = [
+  {
+    name: "NameX",
+    timeAgo: "1h ago",
+    text: "hmmm i am spectical about this.",
+  },
+  {
+    name: "NameY",
+    timeAgo: "4h ago",
+    text: "Your writing style is not engaging",
+  },
+  {
+    name: "NameZ",
+    timeAgo: "5d ago",
+    text: "This was a great resource. I will now use it in all my essays.",
+  },
+];
+
+const entry4_comments = [
+  {
+    name: "NameL",
+    timeAgo: "2h ago",
+    text: "Insightful post! I learned nothing on the matter discussed.",
+  },
+  {
+    name: "NameM",
+    timeAgo: "7h ago",
+    text: "Thank you for such a wonder post i have never seen such bueaty and wonder before ever in my life",
+  },
+  {
+    name: "NameN",
+    timeAgo: "4d ago",
+    text: "sick bro",
+  },
+];
+
+const comments = {
+  entry1: entry1_comments,
+  entry2: entry2_comments,
+  entry3: entry3_comments,
+  entry4: entry4_comments,
+};
+
+export { iconsList, experiences, comments };
