@@ -8,4 +8,4 @@ node_modules/
 *.log
 
 # Template files
-bootcamp-milestone-2/src/app/api/thing/route.template.ts
+bootcamp-milestone-2/src/app/api/thing(TEMPLATE)/
