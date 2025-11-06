@@ -24,9 +24,6 @@ const TimelineWithData = () => {
     const fetchExperiences = async () => {
       try {
         const response = await fetch("/api/experiences");
-        if (!response.ok) {
-          throw new Error("Failed to fetch experiences");
-        }
         const experiences: Experience[] = await response.json();
 
         // Convert MongoDB data to Timeline format
@@ -36,8 +33,8 @@ const TimelineWithData = () => {
         }));
 
         setTimelineData(timelineItems);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
+      } catch (error) {
+        setError("Error fetching timeline data: " + error);
       } finally {
         setLoading(false);
       }
