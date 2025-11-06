@@ -5,4 +5,7 @@ node_modules/
 .env
 .vscode/
 .idea/
-*.log       
+*.log
+
+# Template files
+bootcamp-milestone-2/src/app/api/thing/route.template.ts

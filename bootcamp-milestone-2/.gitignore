@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# template
+.bootcamp-milestone-2/src/app/api/thing/route.template.ts
