@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import connectDB from "@/database/db";
 import Blog from "@/database/blogSchema";
+import CommentsSection from "@/components/CommentsSection";
 
 type BlogDoc = {
   title: string;
@@ -31,7 +32,6 @@ const formatDate = (date: Date) => {
     day: "numeric",
   });
 };
-
 
 export default async function BlogPage({
   params,
@@ -93,6 +93,7 @@ export default async function BlogPage({
               ← Go back to all blogs
             </a>
           </div>
+          <CommentsSection />
         </section>
       </main>
     );

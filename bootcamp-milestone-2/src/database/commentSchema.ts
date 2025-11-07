@@ -2,13 +2,13 @@ import mongoose, { Schema } from "mongoose";
 
 type IComment = {
   name: string;
-  createdAt: Date;
+  timeAgo: Date;
   text: string;
 };
 
 const commentSchema = new Schema<IComment>({
   name: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
+  timeAgo: { type: Date, default: Date.now },
   text: { type: String, required: true },
 });
 
