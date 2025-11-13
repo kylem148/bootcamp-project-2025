@@ -1,13 +1,11 @@
 import mongoose, { Schema } from "mongoose";
 
-// Comment type for nested comments
 type IComment = {
   name: string;
   timeAgo: Date;
   text: string;
 };
 
-// typescript type (can also be an interface)
 type Blog = {
   title: string;
   date: Date;
@@ -18,7 +16,7 @@ type Blog = {
   comments: IComment[];
 };
 
-// Comment schema for nesting
+// Comment schema
 const commentSchema = new Schema<IComment>({
   name: { type: String, required: true },
   timeAgo: { type: Date, default: Date.now },
@@ -33,7 +31,7 @@ const blogSchema = new Schema<Blog>({
   image: { type: String, required: true },
   imageAlt: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
-  comments: [commentSchema], // Array of nested comments
+  comments: [commentSchema],
 });
 
 // defining the collection and model
