@@ -1,67 +1,61 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IComment } from "@/database/blogSchema";
 import Comment from "./Comment";
 
-interface CommentsSectionProps {
+type CommentsSectionProps = {
   slug: string;
   comments: IComment[];
-}
+};
 
-const CommentsSection = ({
+type CommentFormData = {
+  name: string;
+  text: string;
+};
+
+export default function CommentsSection({
   slug,
   comments: initialComments,
-}: CommentsSectionProps) => {
+}: CommentsSectionProps) {
   const [comments, setComments] = useState<IComment[]>(initialComments || []);
-  const [submitData, setSubmitData] = useState({
+  const [formData, setFormData] = useState<CommentFormData>({
     name: "",
     text: "",
   });
-  const [sending, setSending] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (
+  const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setSubmitData({
-      ...submitData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSending(true);
+    setIsSubmitting(true);
+
     try {
       const response = await fetch("/api/blogs", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          slug,
-          comment: submitData,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug, comment: formData }),
       });
 
       if (response.ok) {
         const result = await response.json();
-        
-        if (result.blog && result.blog.comments) {
+        if (result.blog?.comments) {
           setComments(result.blog.comments);
         }
-        setSubmitData({
-          name: "",
-          text: "",
-        });
+        setFormData({ name: "", text: "" });
       }
-    } catch (err) {
-      console.log("Failed to submit comment:", err);
+    } catch (error) {
+      console.error("Failed to submit comment:", error);
     } finally {
-      setSending(false);
+      setIsSubmitting(false);
     }
   };
 
-  // Update comments when initialComments prop changes
   useEffect(() => {
     setComments(initialComments || []);
   }, [initialComments]);
@@ -72,7 +66,7 @@ const CommentsSection = ({
         {/* Header */}
         <div className="flex items-center justify-between mb-4 flex-shrink-0">
           <span className="text-gray-500 text-sm">
-            {comments.length} comments
+            {comments.length} comment{comments.length !== 1 ? "s" : ""}
           </span>
         </div>
 
@@ -99,8 +93,8 @@ const CommentsSection = ({
               <input
                 name="name"
                 placeholder="Your name..."
-                value={submitData.name}
-                onChange={handleChange}
+                value={formData.name}
+                onChange={handleInputChange}
                 required
                 className="px-4 py-2 bg-black text-white rounded-lg border border-gray-600 focus:border-green-500 focus:outline-none text-sm placeholder-gray-400"
               />
@@ -109,17 +103,17 @@ const CommentsSection = ({
                   name="text"
                   placeholder="Share your thoughts..."
                   rows={2}
-                  value={submitData.text}
-                  onChange={handleChange}
+                  value={formData.text}
+                  onChange={handleInputChange}
                   required
                   className="flex-1 px-4 py-3 bg-black text-white rounded-lg border border-gray-600 focus:border-green-500 focus:outline-none resize-none text-sm placeholder-gray-400"
                 />
                 <button
                   type="submit"
-                  disabled={sending}
+                  disabled={isSubmitting}
                   className="px-6 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 text-white text-sm font-medium rounded-lg transition-colors duration-200 flex items-center space-x-2 self-end"
                 >
-                  <span>{sending ? "Sending..." : "Send"}</span>
+                  <span>{isSubmitting ? "Sending..." : "Send"}</span>
                   <svg
                     className="w-4 h-4"
                     fill="none"
@@ -141,6 +135,4 @@ const CommentsSection = ({
       </div>
     </div>
   );
-};
-
-export default CommentsSection;
+}

@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import connectDB from "@/database/db";
 import Blog from "@/database/blogSchema";
 
-// fetch blog data including comments
 export async function GET() {
   try {
     await connectDB();
@@ -17,20 +16,19 @@ export async function GET() {
   }
 }
 
-// add a new comment
 export async function POST(request: Request) {
   try {
     await connectDB();
 
     const { slug, comment } = await request.json();
 
-    if (!slug || !comment) {
+    if (!slug || !comment?.name || !comment?.text) {
       return NextResponse.json(
-        { error: "Blog slug and comment data are required" },
+        { error: "Blog slug and comment data (name, text) are required" },
         { status: 400 }
       );
     }
-    // Find the blog by slug and add the comment
+
     const blog = await Blog.findOneAndUpdate(
       { slug },
       {

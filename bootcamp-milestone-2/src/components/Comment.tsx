@@ -1,31 +1,18 @@
-import React from "react";
 import { IComment } from "@/database/blogSchema";
 
-{
-  /* When we pass props, the name that we use to pass values
-		is the key for the type
-*/
-}
 type CommentProps = {
   comment: IComment;
 };
 
-{
-  /* Modularizing code into separate functions is useful.
-		Makes your code look nicer and allows for better readability.
-	*/
-}
-function parseCommentTime(time: Date) {
-  const date = new Date(time);
-  return date.toLocaleDateString("en-US", {
+const parseCommentTime = (time: Date) => {
+  return new Date(time).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
-}
+};
 
-// Helper function to turn name into initial
-function getInitials(name: string) {
+const getInitials = (name: string) => {
   const names = name.trim().split(" ");
   if (names.length === 0) return "";
   if (names.length === 1) return names[0].charAt(0).toUpperCase();
@@ -33,9 +20,9 @@ function getInitials(name: string) {
     names[0].charAt(0).toUpperCase() +
     names[names.length - 1].charAt(0).toUpperCase()
   );
-}
+};
 
-function Comment({ comment }: CommentProps) {
+export default function Comment({ comment }: CommentProps) {
   return (
     <div className="flex items-start space-x-3 pb-6 border-b border-gray-200 dark:border-gray-700">
       <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-green-700 rounded-full flex items-center justify-center flex-shrink-0">
@@ -59,5 +46,3 @@ function Comment({ comment }: CommentProps) {
     </div>
   );
 }
-
-export default Comment;
