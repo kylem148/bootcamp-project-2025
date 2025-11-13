@@ -24,15 +24,6 @@ export async function generateStaticParams() {
   }
 }
 
-// Helper function to format date
-const formatDate = (date: Date) => {
-  return new Date(date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
-
 export default async function BlogPage({
   params,
 }: {
@@ -45,12 +36,6 @@ export default async function BlogPage({
     }).lean()) as BlogDoc | null;
 
     if (!doc) return notFound();
-
-    const dateStr =
-      doc.date instanceof Date
-        ? doc.date.toISOString().slice(0, 10)
-        : new Date(doc.date).toISOString().slice(0, 10);
-
     return (
       <main>
         <section className="relative w-screen h-[50vh] flex flex-col justify-center overflow-hidden p-10 md:p-30">
@@ -71,7 +56,11 @@ export default async function BlogPage({
               {doc.title}
             </h1>
             <p className="mt-10 font-bold text-amber-50 opacity-90 text-3xl md:text-5xl">
-              {formatDate(new Date(dateStr))}
+              {doc.date.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
             </p>
           </div>
         </section>
