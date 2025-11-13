@@ -1,53 +1,22 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { IComment } from "@/database/blogSchema";
+import Comment from "./Comment";
 
-interface Comment {
-  _id: string;
-  name: string;
-  timeAgo?: string;
-  text: string;
+interface CommentsSectionProps {
+  slug: string;
+  comments: IComment[];
 }
 
-// Helper function to turn name into initial
-const getInitials = (name: string) => {
-  const names = name.trim().split(" ");
-  if (names.length === 0) return "";
-  if (names.length === 1) return names[0].charAt(0).toUpperCase();
-  return (
-    names[0].charAt(0).toUpperCase() +
-    names[names.length - 1].charAt(0).toUpperCase()
-  );
-};
-
-// Helper function to format date
-const formatDate = (comment: Comment) => {
-  let dateValue = comment.timeAgo;
-
-  // If no date field exists, try to extract from MongoDB _id
-  if (!dateValue && comment._id) {
-    const timestamp = parseInt(comment._id.substring(0, 8), 16) * 1000;
-    dateValue = new Date(timestamp).toISOString();
-  }
-  console.log("Date value found:", dateValue, "Type:", typeof dateValue);
-  if (!dateValue) {
-    return "No date";
-  }
-
-  const date = new Date(dateValue);
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
-
-const CommentsSection = () => {
-  const [comments, setComments] = useState<Comment[]>([]);
+const CommentsSection = ({
+  slug,
+  comments: initialComments,
+}: CommentsSectionProps) => {
+  const [comments, setComments] = useState<IComment[]>(initialComments || []);
   const [submitData, setSubmitData] = useState({
     name: "",
     text: "",
   });
-  const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
 
   const handleChange = (
@@ -63,43 +32,39 @@ const CommentsSection = () => {
     e.preventDefault();
     setSending(true);
     try {
-      const response = await fetch("/api/comments", {
+      const response = await fetch("/api/blogs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(submitData),
+        body: JSON.stringify({
+          slug,
+          comment: submitData,
+        }),
       });
 
       if (response.ok) {
-        const newComment = await response.json();
-        setComments((prevComments) => [newComment, ...prevComments]);
+        const result = await response.json();
+        
+        if (result.blog && result.blog.comments) {
+          setComments(result.blog.comments);
+        }
         setSubmitData({
           name: "",
           text: "",
         });
       }
     } catch (err) {
-      console.log("Failed to submit comment");
-      setSending(false);
+      console.log("Failed to submit comment:", err);
     } finally {
       setSending(false);
     }
   };
 
+  // Update comments when initialComments prop changes
   useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const response = await fetch("/api/comments");
-        const data = await response.json();
-        setComments(data);
-      } catch (err) {
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchComments();
-  }, []);
+    setComments(initialComments || []);
+  }, [initialComments]);
 
   return (
     <div className="lg:w-1/2">
@@ -114,29 +79,7 @@ const CommentsSection = () => {
         {/* Comments List */}
         <div className="flex-1 overflow-y-auto pr-2 space-y-6 min-h-0 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800">
           {comments.map((comment, index) => (
-            <div key={index}>
-              {/* Comment */}
-              <div className="flex items-start space-x-3 pb-6 border-b border-gray-200 dark:border-gray-700">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-green-700 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-sm font-bold">
-                    {getInitials(comment.name)}
-                  </span>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center space-x-2 mb-1">
-                    <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
-                      {comment.name}
-                    </h4>
-                    <span className="text-xs text-gray-500">
-                      {formatDate(comment)}
-                    </span>
-                  </div>
-                  <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                    {comment.text}
-                  </p>
-                </div>
-              </div>
-            </div>
+            <Comment key={index} comment={comment} />
           ))}
         </div>
 
@@ -173,9 +116,10 @@ const CommentsSection = () => {
                 />
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 flex items-center space-x-2 self-end"
+                  disabled={sending}
+                  className="px-6 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 text-white text-sm font-medium rounded-lg transition-colors duration-200 flex items-center space-x-2 self-end"
                 >
-                  <span>Send</span>
+                  <span>{sending ? "Sending..." : "Send"}</span>
                   <svg
                     className="w-4 h-4"
                     fill="none"
