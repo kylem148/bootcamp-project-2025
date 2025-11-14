@@ -18,7 +18,7 @@ type BlogDoc = {
 };
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 async function getBlog(slug: string) {
@@ -43,7 +43,7 @@ async function getBlog(slug: string) {
 }
 
 export default async function BlogPage({ params }: Props) {
-  const { slug } = params;
+  const { slug } = await params;
   const blog: BlogDoc | null = await getBlog(slug);
 
   if (!blog) return notFound();
