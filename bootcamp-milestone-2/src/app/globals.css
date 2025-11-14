@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "boxicons/css/boxicons.min.css";
 
 :root {
   --background: #ffffff;
@@ -34,5 +35,4 @@ body {
 
 .text-heading {
   @apply font-bold text-4xl md:text-4xl;
-
 }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import "boxicons/css/boxicons.min.css";
 
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
