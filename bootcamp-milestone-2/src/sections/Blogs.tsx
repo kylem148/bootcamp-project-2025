@@ -19,6 +19,7 @@ interface Blog {
 function BlogList() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   // Fetch blogs from API
   useEffect(() => {
@@ -26,9 +27,21 @@ function BlogList() {
       try {
         const response = await fetch("/api/blogs");
         const data = await response.json();
-        setBlogs(data);
+
+        // Check if the response is successful and data is an array
+        if (response.ok && Array.isArray(data)) {
+          setBlogs(data);
+          setError(null);
+        } else {
+          // Handle API error responses
+          const errorMessage = data.error || "Failed to fetch blogs";
+          setError(errorMessage);
+          setBlogs([]); // Ensure blogs is always an array
+        }
       } catch (error) {
         console.error("Error fetching blogs:", error);
+        setError("Network error - unable to fetch blogs");
+        setBlogs([]); // Ensure blogs is always an array
       } finally {
         setLoading(false);
       }
@@ -128,6 +141,52 @@ function BlogList() {
       >
         <h1 className="text-heading mt-7">Blog</h1>
         <p className="text-neutral-400 mt-4">Loading blogs...</p>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main
+        id="blog"
+        className="flex flex-col items-center justify-center min-h-screen scroll-mt-20"
+      >
+        <h1 className="text-heading mt-7">Blog</h1>
+        <div className="flex flex-col items-center mt-4">
+          <p className="text-red-500 mb-4">{error}</p>
+          <button
+            onClick={() => {
+              setError(null);
+              setLoading(true);
+              // Retry fetching
+              const fetchBlogs = async () => {
+                try {
+                  const response = await fetch("/api/blogs");
+                  const data = await response.json();
+
+                  if (response.ok && Array.isArray(data)) {
+                    setBlogs(data);
+                    setError(null);
+                  } else {
+                    const errorMessage = data.error || "Failed to fetch blogs";
+                    setError(errorMessage);
+                    setBlogs([]);
+                  }
+                } catch (error) {
+                  console.error("Error fetching blogs:", error);
+                  setError("Network error - unable to fetch blogs");
+                  setBlogs([]);
+                } finally {
+                  setLoading(false);
+                }
+              };
+              fetchBlogs();
+            }}
+            className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
+          >
+            Retry
+          </button>
+        </div>
       </main>
     );
   }

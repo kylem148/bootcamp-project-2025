@@ -24,17 +24,28 @@ const TimelineWithData = () => {
     const fetchExperiences = async () => {
       try {
         const response = await fetch("/api/experiences");
-        const experiences: Experience[] = await response.json();
+        const data = await response.json();
 
-        // Convert MongoDB data to Timeline format
-        const timelineItems: TimelineItem[] = experiences.map((exp) => ({
-          title: exp.title,
-          content: <ExperienceContent experience={exp} />,
-        }));
+        // Check if the response is successful and data is an array
+        if (response.ok && Array.isArray(data)) {
+          // Convert MongoDB data to Timeline format
+          const timelineItems: TimelineItem[] = data.map((exp) => ({
+            title: exp.title,
+            content: <ExperienceContent experience={exp} />,
+          }));
 
-        setTimelineData(timelineItems);
+          setTimelineData(timelineItems);
+          setError(null);
+        } else {
+          // Handle API error responses
+          const errorMessage = data.error || "Failed to fetch experiences";
+          setError(errorMessage);
+          setTimelineData([]); // Ensure timelineData is always an array
+        }
       } catch (error) {
-        setError("Error fetching timeline data: " + error);
+        console.error("Error fetching experiences:", error);
+        setError("Network error - unable to fetch experiences");
+        setTimelineData([]); // Ensure timelineData is always an array
       } finally {
         setLoading(false);
       }
