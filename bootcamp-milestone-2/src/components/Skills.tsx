@@ -1,8 +1,8 @@
 import {
   ScrollVelocityContainer,
   ScrollVelocityRow,
-} from "@/components/scroll-based-velocity";
-import { iconsList } from "@/constants/index.js";
+} from "./scroll-based-velocity";
+import { iconsList } from "../constants";
 
 const Skills = () => {
   return (

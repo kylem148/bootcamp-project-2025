@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import connectDB from "@/database/db";
-import ContactSchema from "@/database/contactSchema";
+import connectDB from "../../../database/db";
+import ContactSchema from "../../../database/contactSchema";
 import mongoose from "mongoose";
 
 const Contact =

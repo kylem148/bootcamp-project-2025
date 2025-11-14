@@ -8,9 +8,9 @@ import AboutMe from "../sections/AboutMe";
 import Blogs from "../sections/Blogs";
 import Portfolio from "../sections/Portfolio";
 import Footer from "../components/Footer";
-import Navbar from "@/components/Navbar";
-import ContactParallax from "@/components/ContactParallax";
-import Contact from "@/sections/Contact";
+import Navbar from "../components/Navbar";
+import ContactParallax from "../components/ContactParallax";
+import Contact from "../sections/Contact";
 
 gsap.registerPlugin(ScrollTrigger);
 

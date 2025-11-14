@@ -3,12 +3,12 @@
 // 2. passes it to experinceContent -> turns it into TimelineItem format (json -> react)
 // 3. passes that to Timeline component to render the timeline
 
-
 "use client";
+
 import { useEffect, useState } from "react";
-import Timeline from "@/components/Timeline";
-import ExperienceContent from "@/components/ExperienceContent";
-import type { Experience } from "@/database/experienceSchema";
+import Timeline from "./Timeline";
+import ExperienceContent from "./ExperienceContent";
+import type { Experience } from "../database/experienceSchema";
 
 interface TimelineItem {
   title: string;

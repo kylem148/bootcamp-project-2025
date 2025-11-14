@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import CommentsSection from "@/components/CommentsSection";
+import React from "react";
+import CommentsSection from "../../../components/CommentsSection";
 
 type BlogDoc = {
   title: string;

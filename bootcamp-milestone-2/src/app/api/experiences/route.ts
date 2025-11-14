@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import connectDB from "@/database/db";
-import Experience from "@/database/experienceSchema";
+import connectDB from "../../../database/db";
+import Experience from "../../../database/experienceSchema";
 
 export async function GET() {
   try {

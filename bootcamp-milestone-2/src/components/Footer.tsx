@@ -1,5 +1,4 @@
 import React from 'react'
-import ParallaxBackground from './ParallaxBackground'
 
 const Footer = () => {
   return (

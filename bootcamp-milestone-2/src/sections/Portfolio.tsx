@@ -1,5 +1,6 @@
+"use client";
 import React from "react";
-import TimelineWithData from "@/components/TimelineWithData";
+import TimelineWithData from "../components/TimelineWithData";
 
 function Portfolio() {
   return (

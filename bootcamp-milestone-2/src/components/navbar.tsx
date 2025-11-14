@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -45,7 +45,7 @@ function Navbar() {
         ease: "power2.out",
         delay: 0.2,
       }
-    )
+    );
     gsap.fromTo(
       "#desktopMenu a[href='#contact']",
       {
@@ -56,10 +56,10 @@ function Navbar() {
         y: 0,
         opacity: 1,
         duration: 0.5,
-        ease: "power2.out",   
+        ease: "power2.out",
         delay: 0.4,
       }
-    )
+    );
   }, []);
 
   return (

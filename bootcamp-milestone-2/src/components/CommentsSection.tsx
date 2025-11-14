@@ -1,7 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
-import { IComment } from "@/database/blogSchema";
+import React, { useState, useEffect } from "react";
 import Comment from "./Comment";
+import { IComment } from "../database/blogSchema";
 
 type CommentsSectionProps = {
   slug: string;

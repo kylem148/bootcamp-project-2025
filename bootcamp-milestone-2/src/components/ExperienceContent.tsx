@@ -1,7 +1,7 @@
 import React from "react";
-import LangButton from "@/components/LangButton";
+import LangButton from "./LangButton";
 import Image from "next/image";
-import type { Experience } from "@/database/experienceSchema";
+import type { Experience } from "../database/experienceSchema";
 
 interface ExperienceContentProps {
   experience: Experience;
