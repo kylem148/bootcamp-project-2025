@@ -1,18 +1,14 @@
-import React from "react";
-import { useRef, useState } from "react";
+import React, { useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import "boxicons/css/boxicons.min.css";
 
 function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   //toggle visiblity of menu
   const toggleMenu = () => {
-    const MobileMenu = document.getElementById("mobileMenu");
-    if (MobileMenu?.classList.contains("hidden")) {
-      MobileMenu.classList.remove("hidden");
-    } else {
-      MobileMenu?.classList.add("hidden");
-    }
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   useGSAP(() => {
@@ -100,42 +96,42 @@ function Navbar() {
       </a>
 
       {/* Mobile Button */}
-      <button
-        onClick={() => {
-          toggleMenu();
-        }}
-        className="md:hidden text-3xl p-2 z-50"
-      >
+      <button onClick={toggleMenu} className="md:hidden text-3xl p-2 z-50">
         <i className="bx bx-menu"></i>
       </button>
 
       {/* Mobile Menu */}
       <div
-        id="mobileMenu"
-        className="hidden fixed top-16 bottom-0 right-0 left-0 p-5 md:hidden z-40"
+        className={`${
+          isMobileMenuOpen ? "block" : "hidden"
+        } fixed top-16 bottom-0 right-0 left-0 p-5 md:hidden z-40`}
       >
         <nav className="flex flex-col gap-6 items-center">
           <a
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
             href="#about"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             HOME
           </a>
           <a
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
             href="#resume"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             PORTFOLIO
           </a>
           <a
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
             href="#blog"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             BLOG
           </a>
           <a
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
             href="#contact"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             CONTACT
           </a>
