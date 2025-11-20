@@ -2,17 +2,19 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
 import CommentsSection from "../../../components/CommentsSection";
+import connectDB from "../../../database/db";
+import Blog from "../../../database/blogSchema";
 
 type BlogDoc = {
   title: string;
-  date: Date;
+  date: string; 
   description: string;
   image: string;
   imageAlt: string;
   slug: string;
   comments?: Array<{
     name: string;
-    timeAgo: Date;
+    timeAgo: string; 
     text: string;
   }>;
 };
@@ -23,22 +25,33 @@ type Props = {
 
 async function getBlog(slug: string) {
   try {
-    // This fetches the blog from an api endpoint that would GET the blog
-    const res = await fetch(`/api/blogs/${slug}`, {
-      cache: "no-store",
-    });
-    // This checks that the GET request was successful
-    if (!res.ok) {
-      throw new Error("Failed to fetch blog");
+    await connectDB();
+    const blog = await Blog.findOne({ slug }).lean();
+
+    if (!blog) {
+      return null;
     }
 
-    return res.json();
+    const blogDoc = blog as any;
+
+    // Convert MongoDB document to plain object
+    return {
+      title: blogDoc.title,
+      date: blogDoc.date.toISOString(),
+      description: blogDoc.description,
+      image: blogDoc.image,
+      imageAlt: blogDoc.imageAlt,
+      slug: blogDoc.slug,
+      comments:
+        blogDoc.comments?.map((comment: any) => ({
+          name: comment.name,
+          timeAgo: comment.timeAgo.toISOString(),
+          text: comment.text,
+        })) || [],
+    };
   } catch (err: unknown) {
     console.log(`error: ${err}`);
     return null;
-    // `` are a special way of allowing JS inside a string
-    // Instead of "error: " + err, we can just do the above
-    // it is similar to formatted strings in python --> f"{err}"
   }
 }
 
@@ -89,7 +102,15 @@ export default async function BlogPage({ params }: Props) {
             ...Go back to all blogs
           </a>
         </div>
-        <CommentsSection slug={slug} comments={blog.comments || []} />
+        <CommentsSection
+          slug={slug}
+          comments={
+            blog.comments?.map((comment) => ({
+              ...comment,
+              timeAgo: new Date(comment.timeAgo),
+            })) || []
+          }
+        />
       </section>
     </main>
   );
