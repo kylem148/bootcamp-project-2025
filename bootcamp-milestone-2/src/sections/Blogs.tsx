@@ -154,38 +154,6 @@ function BlogList() {
         <h1 className="text-heading mt-7">Blog</h1>
         <div className="flex flex-col items-center mt-4">
           <p className="text-red-500 mb-4">{error}</p>
-          <button
-            onClick={() => {
-              setError(null);
-              setLoading(true);
-              // Retry fetching
-              const fetchBlogs = async () => {
-                try {
-                  const response = await fetch("/api/blogs");
-                  const data = await response.json();
-
-                  if (response.ok && Array.isArray(data)) {
-                    setBlogs(data);
-                    setError(null);
-                  } else {
-                    const errorMessage = data.error || "Failed to fetch blogs";
-                    setError(errorMessage);
-                    setBlogs([]);
-                  }
-                } catch (error) {
-                  console.error("Error fetching blogs:", error);
-                  setError("Network error - unable to fetch blogs");
-                  setBlogs([]);
-                } finally {
-                  setLoading(false);
-                }
-              };
-              fetchBlogs();
-            }}
-            className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
-          >
-            Retry
-          </button>
         </div>
       </main>
     );
