@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       to: process.env.EMAIL_TO,
       subject: `Portfolio Contact: ${subject}`,
       html: `
-              <h2>New Contact Form Submission</h2>
+              <h2>[Personal Website] New Contact Form Submission</h2>
               <p><strong>Name:</strong> ${name}</p>
               <p><strong>Email:</strong> ${email}</p>
               <p><strong>Subject:</strong> ${subject}</p>

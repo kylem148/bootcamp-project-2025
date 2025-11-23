@@ -22,7 +22,8 @@ const contactSchema = new Schema<Contact>({
 });
 
 const Contact =
-  mongoose.models.Contact || mongoose.model<Contact>("Contact", contactSchema);
+  mongoose.models.PersonalWebsiteContact ||
+  mongoose.model<Contact>("PersonalWebsiteContact", contactSchema);
 
 export { Contact };
 export default contactSchema;
