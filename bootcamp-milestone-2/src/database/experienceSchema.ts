@@ -6,7 +6,7 @@ type Experience = {
   heading: string;
   description: string;
   technologies: string[];
-  images: string[];
+  images: string[]; // Now supports both image and video file paths
   order: number;
 };
 
@@ -16,7 +16,7 @@ const experienceSchema = new Schema<Experience>({
   heading: { type: String, required: true },
   description: { type: String, required: true },
   technologies: [{ type: String, required: true }],
-  images: [{ type: String, required: true }],
+  images: [{ type: String, required: true }], // Will contain both images and videos
   order: { type: Number, required: true },
 });
 
